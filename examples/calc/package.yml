@@ -1,0 +1,34 @@
+---
+id: calc
+description: This is the package for the Copland tutorials.
+
+service-points:
+
+  Adder:
+    implementor: vendor/drip/examples/calc/Adder.php::Adder
+
+  Subtractor:
+    implementor: vendor/drip/examples/calc/Subtractor.php::Subtractor
+
+  Multiplier:
+    implementor: vendor/drip/examples/calc/Multiplier.php::Multiplier
+
+  Divider:
+    implementor: vendor/drip/examples/calc/Divider.php::Divider
+
+  Calculator:
+    model: prototype
+    implementor:
+      class: vendor/drip/examples/calc/Calculator.php::Calculator
+      properties:
+        adder: !!service calc.Adder
+        subtractor: !!service calc.Subtractor
+        divider: !!service calc.Divider
+        multiplier: !!service calc.Multiplier
+        memory: 0
+        functions: !!configuration calc.CalculatorFunctions
+
+configuration-points:
+
+  CalculatorFunctions:
+    type: map

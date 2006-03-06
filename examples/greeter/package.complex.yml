@@ -1,0 +1,33 @@
+---
+id: tutorial.complex
+description: This is a complex test package.
+
+service-points:
+
+  greeter1:
+    description: A service for greeting the world.
+    implementor:
+      class: vendor/drip/examples/greeter/Greeter.php::Greeter
+
+  greeter2:
+    description: A service for greeting the world.
+    implementor:
+      class: vendor/drip/examples/greeter/Greeter.php::Greeter
+      parameters:
+        - Foobar
+
+  greeter3:
+    description: A service for greeting the world.
+    implementor:
+      class: vendor/drip/examples/greeter/Greeter.php::Greeter
+      properties:
+        foo: b
+        bar: c
+        whom: Marcus
+
+  greeter4:
+    description: A service for greeting the world.
+    implementor:
+      class: vendor/drip/examples/greeter/Greeter.php::Greeter
+      invoke:
+        greet: anyone

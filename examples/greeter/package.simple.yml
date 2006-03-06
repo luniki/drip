@@ -1,0 +1,9 @@
+---
+id: tutorial.simple
+description: This is a simple test package.
+
+service-points:
+
+  greeter:
+    description: A service for greeting the world.
+    implementor: vendor/drip/examples/greeter/Greeter.php::Greeter
