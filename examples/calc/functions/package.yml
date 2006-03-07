@@ -5,7 +5,7 @@ description: This is the package for the Copland tutorials.
 service-points:
 
   Sine:
-    implementor: vendor/drip/examples/calc/functions/Sine.php::Sine
+    implementor: functions/Sine.php::Sine
 
 
 contributions:

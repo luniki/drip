@@ -22,7 +22,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 srand(23);
 
 ###
-require_once '../../drip.php';
+require_once '../../lib/drip.php';
 
 $registry = Registry::build('package.yml', 'functions/package.yml');
 $calc = $registry->service('calc.Calculator');

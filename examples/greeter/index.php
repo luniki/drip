@@ -5,7 +5,7 @@ if (function_exists('syck_load'))
 */
 
 srand(23);
-require_once '../../drip.php';
+require_once '../../lib/drip.php';
 
 
 $reg = Registry::build('package.simple.yml', 'package.complex.yml');

@@ -7,19 +7,19 @@ service-points:
   greeter1:
     description: A service for greeting the world.
     implementor:
-      class: vendor/drip/examples/greeter/Greeter.php::Greeter
+      class: Greeter.php::Greeter
 
   greeter2:
     description: A service for greeting the world.
     implementor:
-      class: vendor/drip/examples/greeter/Greeter.php::Greeter
+      class: Greeter.php::Greeter
       parameters:
         - Foobar
 
   greeter3:
     description: A service for greeting the world.
     implementor:
-      class: vendor/drip/examples/greeter/Greeter.php::Greeter
+      class: Greeter.php::Greeter
       properties:
         foo: b
         bar: c
@@ -28,6 +28,6 @@ service-points:
   greeter4:
     description: A service for greeting the world.
     implementor:
-      class: vendor/drip/examples/greeter/Greeter.php::Greeter
+      class: Greeter.php::Greeter
       invoke:
         greet: anyone

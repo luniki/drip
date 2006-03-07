@@ -18,12 +18,12 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
-require_once 'vendor/spyc/spyc.php';
+require_once 'spyc/spyc.php';
 
-require_once 'lib/Configuration.php';
-require_once 'lib/ConfigurationPoint.php';
-require_once 'lib/Instantiator.php';
-require_once 'lib/Package.php';
-require_once 'lib/Registry.php';
-require_once 'lib/ServiceModel.php';
-require_once 'lib/ServicePoint.php';
+require_once 'drip/Configuration.php';
+require_once 'drip/ConfigurationPoint.php';
+require_once 'drip/Instantiator.php';
+require_once 'drip/Package.php';
+require_once 'drip/Registry.php';
+require_once 'drip/ServiceModel.php';
+require_once 'drip/ServicePoint.php';

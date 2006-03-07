@@ -5,21 +5,21 @@ description: This is the package for the Copland tutorials.
 service-points:
 
   Adder:
-    implementor: vendor/drip/examples/calc/Adder.php::Adder
+    implementor: Adder.php::Adder
 
   Subtractor:
-    implementor: vendor/drip/examples/calc/Subtractor.php::Subtractor
+    implementor: Subtractor.php::Subtractor
 
   Multiplier:
-    implementor: vendor/drip/examples/calc/Multiplier.php::Multiplier
+    implementor: Multiplier.php::Multiplier
 
   Divider:
-    implementor: vendor/drip/examples/calc/Divider.php::Divider
+    implementor: Divider.php::Divider
 
   Calculator:
     model: prototype
     implementor:
-      class: vendor/drip/examples/calc/Calculator.php::Calculator
+      class: Calculator.php::Calculator
       properties:
         adder: !!service calc.Adder
         subtractor: !!service calc.Subtractor

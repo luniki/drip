@@ -6,4 +6,4 @@ service-points:
 
   greeter:
     description: A service for greeting the world.
-    implementor: vendor/drip/examples/greeter/Greeter.php::Greeter
+    implementor: Greeter.php::Greeter
