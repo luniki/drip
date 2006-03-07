@@ -13,93 +13,128 @@
 </head>
 <body>
 
-<p>This is the initial web content for your project.  Please customize
-this to fit your project.  You don't need to answer all these questions
-or follow this exact format, but we do like to see this kind of
-information before we approve projects for public viewing.
+<h3>What is Drip?</h3>
+
+<p>
+Drip is an Inversion of Control (IoC) container written in PHP4 and inspired by
+<a href="http://copland.rubyforge.org">Copland</a>. In a nutshell, it allows you
+to simplify the instantiation and initialization of your classes.
 </p>
 
-<p>Until your project is approved, only you can view it and work on
-it.
+
+<p>
+Inversion of Control, also known as
+<abbr title="Inversion of Control">IoC</abbr>, is a relatively new concept that
+has been made popular by the <a href="http://www.springframework.org">Spring
+Application Framework</a> and can be used to reduce coupling inherent in
+computer programs. As <a href="http://www.martinfowler.com">Martin Fowler</a>
+<a href="http://martinfowler.com/articles/injection.html">points out</a>, the
+term 'Inversion of Control' is a poorly-chosen one. Still, it is the one that
+most people know the concept by, so it will be used throughout the
+documentation.
 </p>
+
+<p>
+As of now there are no other <abbr title="Inversion of Control">IoC</abbr>
+containers for PHP4 beside Drip.
+</p>
+
+<h3>What can Drip do for you?</h3>
+
+<p>
+Ultimately, it can reduce the amount of code that you have to write, simplifying
+some common programming tasks for you. This has the two-fold benefit of both
+decreasing application development time, and of decreasing the effort needed to
+maintain your application.
+</p>
+
+<p>Specifically, Drip features:</p>
 
 <ul>
-<li>This index.html will be used if and only if you have the "Use
-Project Home Page" option checked on the "Administer Project" page
-(click the "Admin" tab).</li>
-
-<li>To edit this file, check out your project via CVS and edit www/index.html.
-
-<li>You can 'cvs add' and commit other files under the project's "www"
-directory and they will published to your project web site.</li>
-
-<li>Also, consider starting a thread in the "dev" mailing list to get
-these discussion started.  A good one is an "introduction" thread where
-people post messages about themselves and their interest in the
-project.</li>
-
-<li>You can add a "Highlights:" line to the top of all web pages by adding a file www/project_highlights.html </li>
+  <li>Reference Another Service</li>
+  <li>Service Configuration</li>
+  <li>???</li>
 </ul>
 
+<hr/>
 
-<h3>Mission</h3>
-
-<p>What is the goal of this project?
-</p>
-
-<p>What is the scope of this project?
-</p>
+<p>What are the high-level assumptions or ground rules for the project?</p>
 
 <p>For example:</p>
 
 <ul>
-<li>Develop just enough functionality to scratch a particular itch</li>
-<li>Build a tool just like XYZ, but less broken</li>
-<li>Build the best XYZ-tool ever!</li>
-</ul>
+  <li>We will use programming language X on operating system Y for now.</li>
 
+  <li>
+  We will, or will not, consider certain functional areas like
+  internationalization, high security, concurrency, etc.  The list of
+  functional areas will depend on what you are trying to do.
+  </li>
 
-<p>What are high-level features you are sure to build?
-</p>
-<ul>
-
-<li>What would you write on a billboard about your project? Users
-might only look for a few seconds.</li>
-
-<li>Use the issue tracker to track features and enhancement
-requests. It is not just for bugs, pre-populate it with feature
-descriptions so that potential contributors know what you would like them
-to work on.</li>
-</ul>
-
-<p>What are the high-level assumptions or ground rules for the project?
-</p>
-
-<p>For example:
-</p>
-
-<ul>
-<li> we will use programming language X on operating system Y for now.
-
-<li>We will, or will not, consider certain functional areas like
-internationalization, high security, concurrency, etc.  The list of
-functional areas will depend on what you are trying to do.
-
-<li>Try to keep this part short.
+  <li>Try to keep this part short.</li>
 </ul>
 
 
 <h3>Related resources</h3>
 
 <ul>
-<li>Link to other stuff that you know about.  It will help you
-research requirements and provide a useful resource to potential
-contributors.</li>
+  <li>
+    <strong>Papers</strong>
+    <ul>
 
-<li>Why reinvent the wheel? What is better about this wheel?  Is there
-any existing project that you can partner with or reuse?</li>
+      <li>
+        Martin Fowler (2004).
+        <a href="http://martinfowler.com/articles/injection.html">Inversion of Control Containers and the Dependency Injection pattern</a>.
+      </li>
 
-<li>Where would you go to try to find potential contibutors?</li>
+      <li>
+        Paul Hammant, Mauro Talevi, Aslak Hellesoy.
+        <a href="http://docs.codehaus.org/display/PICO/Inversion+of+Control">Inversion of Control</a>.
+      </li>
+
+      <li>
+        Mohamed Fayad, Doug C. Schmidt.
+        <a href="http://www.cs.wustl.edu/~schmidt/CACM-frameworks.html">Object-Oriented Application Frameworks</a>.
+      </li>
+
+      <li>
+        Robert Cecil Martin.
+        <a href="http://www.objectmentor.com/resources/articles/dip.pdf">The Dependency Inversion Principle</a>.
+      </li>
+      
+      <li>
+        Sony Mathew (2005).
+        <a href="http://theserverside.com/articles/article.tss?l=IOCandEJB">Examining the Validity of Inversion of Control</a>.
+      </li>
+    </ul>
+  </li>
+
+  <li>
+    <strong>Containers</strong>
+    <ul>
+      <li>
+        <a href="http://copland.rubyforge.org/">Copland</a> - Ruby
+      </li>
+      <li>
+        <a href="http://needle.rubyforge.org/">Needle</a> - Ruby
+      </li>
+      <li>
+        <a href="http://jakarta.apache.org/hivemind/">HiveMind</a> - Java
+      </li>
+      <li>
+        <a href="http://www.springframework.org/">Spring Framework</a> - Java
+      </li>
+      <li>
+        <a href="http://www.picocontainer.org/">PicoContainer</a> - Java, .Net, Ruby, PHP5
+      </li>
+      <li>
+        <a href="http://www.sitepoint.com/forums/showthread.php?t=256673">PhemtoContainer</a> - PHP5
+      </li>
+      <li>
+        <a href="http://www.fromthecrossroads.ws/index.php/2005/09/13/p151">d51DM</a> - PHP5
+      </li>
+    </ul>
+  </li>
 </ul>
 
 </body>
