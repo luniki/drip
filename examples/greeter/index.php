@@ -8,7 +8,7 @@ srand(23);
 require_once '../../lib/drip.php';
 
 
-$reg = Registry::build('package.simple.yml', 'package.complex.yml');
+$reg = Drip_Registry::build('package.simple.yml', 'package.complex.yml');
 $services = array('tutorial.simple.greeter',
                   'tutorial.complex.greeter1',
                   'tutorial.complex.greeter2',

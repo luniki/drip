@@ -18,13 +18,13 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
-class Configuration {
+class Drip_Configuration {
 
 	#	internal variables
   var $registry;
 
 	#	Constructor
-  function Configuration(&$registry) {
+  function Drip_Configuration(&$registry) {
     $this->registry =& $registry;
   }
 
@@ -40,7 +40,7 @@ class Configuration {
 
     # create new packages
     foreach ($yamls as $id => $yaml)
-      $this->registry->add_package(new Package($id, $yaml['description']));
+      $this->registry->add_package(new Drip_Package($id, $yaml['description']));
 
     # create configuration points
     foreach ($yamls as $id => $yaml) {
@@ -54,7 +54,7 @@ class Configuration {
       
       # add configuration points
       foreach ($yaml['configuration-points'] as $name => $cp)
-        $package->add_configuration_point(new ConfigurationPoint($name,
+        $package->add_configuration_point(new Drip_ConfigurationPoint($name,
                                             $cp['description'],
                                             $cp['type']));
     }
@@ -76,7 +76,7 @@ class Configuration {
         # use tags
         $sp = array_map(array(&$this, '_get_typed_value'), $sp);
 
-        $service_point =& new ServicePoint($name, $sp['description'], $sp['implementor']);
+        $service_point =& new Drip_ServicePoint($name, $sp['description'], $sp['implementor']);
         $package->add_service_point($service_point);
 
         # choose model
@@ -84,12 +84,12 @@ class Configuration {
 
           default:
           case 'singleton':
-            $service_point->service_model =& new SingletonServiceModel($service_point);
+            $service_point->service_model =& new Drip_SingletonServiceModel($service_point);
             $service_point->service_model->id = uniqid('');
             break;
 
           case 'prototype':
-            $service_point->service_model =& new PrototypeServiceModel($service_point);
+            $service_point->service_model =& new Drip_PrototypeServiceModel($service_point);
             $service_point->service_model->id = uniqid('');
             break;
         }
@@ -97,10 +97,10 @@ class Configuration {
         #choose implementor
         if (!is_array($sp['implementor']))
           $service_point->instantiator =&
-            new SimpleInstantiator($service_point, $sp['implementor']);
+            new Drip_SimpleInstantiator($service_point, $sp['implementor']);
         else
           $service_point->instantiator =&
-            new ComplexInstantiator($service_point, $sp['implementor']);
+            new Drip_ComplexInstantiator($service_point, $sp['implementor']);
       }
     }
     

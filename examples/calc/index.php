@@ -24,7 +24,7 @@ srand(23);
 ###
 require_once '../../lib/drip.php';
 
-$registry = Registry::build('package.yml', 'functions/package.yml');
+$registry = Drip_Registry::build('package.yml', 'functions/package.yml');
 $calc = $registry->service('calc.Calculator');
 
 echo $calc->add(5, 8);

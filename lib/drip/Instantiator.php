@@ -18,13 +18,13 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
-class Instantiator {
+class Drip_Instantiator {
 
 	#	internal variables
   var $point, $definition;
 	
 	#	Constructor
-  function Instantiator(&$point, $definition) {
+  function Drip_Instantiator(&$point, $definition) {
     $this->point =& $point;
     $this->definition = $definition;
   }
@@ -48,7 +48,7 @@ class Instantiator {
 
 ###
 
-class SimpleInstantiator extends Instantiator {
+class Drip_SimpleInstantiator extends Drip_Instantiator {
 
   function &instantiate() {
     $class = $this->_load_class($this->definition);
@@ -58,7 +58,7 @@ class SimpleInstantiator extends Instantiator {
 
 ###
 
-class ComplexInstantiator extends Instantiator {
+class Drip_ComplexInstantiator extends Drip_Instantiator {
 
   function &instantiate() {
     

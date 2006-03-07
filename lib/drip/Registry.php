@@ -18,13 +18,13 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
-class Registry {
+class Drip_Registry {
 
 	#	internal variables
 	var $packages;
 
 	#	Constructor
-	function Registry() {
+	function Drip_Registry() {
     $this->packages = array();
 	}
 
@@ -35,8 +35,8 @@ class Registry {
 
 	# building registry from package files
 	function &build($dummy_filename) {
-		$registry =& new Registry();
-    $conf =& new Configuration($registry);
+		$registry =& new Drip_Registry();
+    $conf =& new Drip_Configuration($registry);
 		$conf->process(func_get_args());
 		return $registry;
 	}

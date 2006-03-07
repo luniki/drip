@@ -18,13 +18,13 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
-class ServiceModel {
+class Drip_ServiceModel {
 
 	#	internal variables
   var $service_point;
 
 	#	Constructor
-  function ServiceModel(&$service_point) {
+  function Drip_ServiceModel(&$service_point) {
     $this->service_point =& $service_point;
   }
 
@@ -36,7 +36,7 @@ class ServiceModel {
 
 ###
 
-class PrototypeServiceModel extends ServiceModel {
+class Drip_PrototypeServiceModel extends Drip_ServiceModel {
 
   function &instance() {
     return $this->service_point->instantiate();
@@ -45,7 +45,7 @@ class PrototypeServiceModel extends ServiceModel {
 
 ###
 
-class SingletonServiceModel extends ServiceModel {
+class Drip_SingletonServiceModel extends Drip_ServiceModel {
 
 	#	internal variables
   var $instance = NULL;

@@ -18,13 +18,13 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
-class Package {
+class Drip_Package {
 
 	#	internal variables
   var $name, $description, $service_points, $configuration_points;
 
 	#	Constructor
-  function Package($name, $description) {
+  function Drip_Package($name, $description) {
     $this->name = $name;
     $this->description = $description;
     $this->service_points = array();
