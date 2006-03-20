@@ -1,10 +1,4 @@
 <?
-/*
-if (function_exists('syck_load'))
-  var_dump(syck_load(file_get_contents('package.yml')));
-*/
-
-srand(23);
 require_once '../../lib/drip.php';
 
 

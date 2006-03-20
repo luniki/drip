@@ -1,0 +1,8 @@
+---
+id: tutorial
+description: This is the package for the Drip tutorial 01.
+
+service-points:
+
+  Adder:
+    implementor: tutorial.php::Adder
