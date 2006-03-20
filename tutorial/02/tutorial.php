@@ -47,18 +47,18 @@ class Calculator {
   var $adder, $subtractor, $multiplier, $divider;
 
   function add($a, $b) {
-    $this->adder->add($a, $b);
+    return $this->adder->add($a, $b);
   }
 
   function subtract($a, $b) {
-    $this->subtractor->subtract($a, $b);
+    return $this->subtractor->subtract($a, $b);
   }
 
   function multiply($a, $b) {
-    $this->multiplier->multiply($a, $b);
+    return $this->multiplier->multiply($a, $b);
   }
 
   function divide($a, $b) {
-    $this->divider->divide($a, $b);
+    return $this->divider->divide($a, $b);
   }
 }
