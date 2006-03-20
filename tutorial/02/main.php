@@ -26,5 +26,5 @@ $calc = $registry->service('tutorial.Calculator');
 
 printf("%f\n", $calc->add(5, 7));
 printf("%f\n", $calc->subtract(5, 7));
-printf("%f\n", $calc->multiplay(5, 7));
+printf("%f\n", $calc->multiply(5, 7));
 printf("%f\n", $calc->divide(5, 7));
