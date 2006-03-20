@@ -68,6 +68,7 @@ class Drip_ComplexInstantiator extends Drip_Instantiator {
     $class = $this->_load_class($this->definition['class']);
 
     # parameters
+    $parameters = NULL;
     if (isset($this->definition['parameters']))
     	if (!is_array($parameters = $this->definition['parameters']))
         $parameters = array($parameters);
@@ -75,9 +76,8 @@ class Drip_ComplexInstantiator extends Drip_Instantiator {
     # instantiate
     if (!$parameters)
       $instance =& new $class();
-    else {
+    else
       $instance =& $this->_create_obj_array($class, $parameters);
-    }
 
     # properties
     if (isset($this->definition['properties']))
