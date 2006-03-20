@@ -1,0 +1,26 @@
+---
+id: tutorial
+description: This is the package for the Copland tutorial 02.
+
+service-points:
+
+  Adder:
+    implementor: tutorial.php::Adder
+
+  Subtractor:
+    implementor: tutorial.php::Subtractor
+
+  Multiplier:
+    implementor: tutorial.php::Multiplier
+
+  Divider:
+    implementor: tutorial.php::Divider
+
+  Calculator:
+    implementor:
+      class: tutorial.php::Calculator
+      properties:
+        adder: !!service Adder
+        subtractor: !!service Subtractor
+        divider: !!service Divider
+        multiplier: !!service Multiplier

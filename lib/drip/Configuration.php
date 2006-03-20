@@ -73,14 +73,24 @@ class Drip_Configuration {
       # add configuration points
       foreach ($yaml['service-points'] as $name => $sp) {
 
+        # missing implementor
+        if (!isset($sp['implementor'])) {
+          trigger_error('Missing implementor element for service point '.
+                        $name, E_USER_WARNING);
+          continue;
+        }
+
         # use tags
         $sp = array_map(array(&$this, '_get_typed_value'), $sp);
 
-        $service_point =& new Drip_ServicePoint($name, $sp['description'], $sp['implementor']);
+        # get description
+        $desc = isset($sp['description']) ? $sp['description'] : '';
+
+        $service_point =& new Drip_ServicePoint($name, $desc, $sp['implementor']);
         $package->add_service_point($service_point);
 
         # choose model
-        switch ($sp['model']) {
+        switch (@$sp['model']) {
 
           default:
           case 'singleton':
