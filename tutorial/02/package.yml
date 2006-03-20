@@ -20,7 +20,7 @@ service-points:
     implementor:
       class: tutorial.php::Calculator
       properties:
-        adder: !!service Adder
-        subtractor: !!service Subtractor
-        divider: !!service Divider
-        multiplier: !!service Multiplier
+        adder: !!service tutorial.Adder
+        subtractor: !!service tutorial.Subtractor
+        divider: !!service tutorial.Divider
+        multiplier: !!service tutorial.Multiplier
