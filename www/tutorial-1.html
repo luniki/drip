@@ -1,0 +1,112 @@
+<html>
+<head>
+<style type="text/css">
+/* <![CDATA[ */ 
+@import "http://www.tigris.org/branding/css/tigris.css"; 
+@import "http://www.tigris.org/branding/css/inst.css"; 
+/*  ]]> */
+</style>
+<link rel="stylesheet" type="text/css" href="http://www.tigris.org/branding/css/print.css" media="print" />
+<script src="http://www.tigris.org/branding/scripts/tigris.js" type="text/javascript">
+</script>
+<title>Drip Manual :: Tutorial 1 :: Creating Services</title>
+</head>
+<body>
+<div id="content">
+
+<h1>Tutorial #1. Creating Services</h1>
+
+<p>The sources for this tutorial may be found in the <tt>tutorial/01</tt>
+directory of the Drip distribution.</p>
+
+<h2>Introduction</h2>
+
+<p>A "service" is just an object. A plain, old, vanilla-flavored PHP object. It's as simple as that. You create a PHP object, define methods and attributes on it, put it in Drip, and voila! Instant service.</p>
+<p>I'm assuming you already know how to create PHP objects. (If not, you may want to check out a more basic tutorial.) This tutorial will show you how to plug those objects into Drip, and how to access them in your program.</p>
+
+<h2>Steps</h2>
+
+<ol>
+
+<li><h3>Implement the Service</h3>
+
+	<p>For this tutorial, we'll create a service that adds two numbers and returns the result. Pretty basic, but easy to understand.</p>
+	<p>So, first things first: let's write a PHP class that performs this operation:</p>
+
+<pre>
+class Adder {
+  function add($a, $b) {
+    return $a + $b;
+  }
+}
+</pre>
+
+<p>(Just to give this example a little more value, we'll have it explicitly convert its operands to floats&#8212;it makes things a little more impressive.)</p>
+
+<p>Save your file as "tutorial.php" and move on to the next step.<br /></p>
+
+</li>
+
+<li><h3>Tell Drip About It</h3>
+
+<p>Next, we need to tell Drip about our service. We'll create a package descriptor file (called "package.yml") in the same directory as our "tutorial.php" file, and in it we'll tell Drip the name of our service and what PHP class implements it (among other things). This file is <span class="caps">YAML</span>-formatted, so if you've used <span class="caps">YAML</span> before, the format (at least) should look very familiar.</p>
+
+<pre>
+---
+id: tutorial
+description: This is the package for the Drip tutorial 01.
+
+service-points:
+
+  Adder:
+    description: A service for adding two numbers.
+    implementor: tutorial.php::Adder
+</pre>
+
+<p>(The 'description' elements are always optional... we've shown them here just to demonstrate how they are used, but in later tutorials we'll leave them out, for clarity.)</p>
+
+<p>This descriptor creates a new <em>package</em>, called "tutorial". In Drip, all services are defined within <em>packages</em>.<br />The descriptor then defines a single <em>service point</em>, called Adder. (Service points are the definitions of services. You can think of it like this: just as an object is the instantiation of a class, so is a service the instantiation of a service point.) This service point is implemented by "tutorial.php::Adder", which means that "tutorial.php" will be required, and then "Adder" instantiated.<br /></p>
+
+</li>
+
+<li><h3>Use the Service</h3>
+
+<p>Lastly, we create a "main.php" driver file which we'll use to test our new service point. This driver will simply instantiate a registry, grab a reference to the new service, and then invoke our <code>add()</code> method:</p>
+
+<pre>
+require_once '../../lib/drip.php';
+
+$registry = Drip_Registry::build('package.yml');
+
+$adder = $registry->service('tutorial.Adder');
+
+echo $adder->add(5, 7);
+</pre>
+
+<p>The <code>build()</code> method of Drip_Registry will load the package descriptor and configure the registry.</p>
+
+<p>Once the registry has been initialized, you can query it for services. In this case, we ask the registry for the <code>tutorial.Adder</code> service (i.e., the <code>Adder</code> service that exists in the <code>tutorial</code> package). Drip then returns this service.</p>
+
+<p>Lastly, we invoke the <code>add()</code> method and print the result. And it just works!<br /></p>
+
+</li>
+
+</ol>
+
+<h2>Summary</h2>
+
+<p>This tutorial demonstrated a few things:</p>
+
+<ol>
+
+<li>Drip services are just plain-ol' PHP objects.</li>
+<li>Package descriptors are just <span class="caps">YAML</span> files</li>
+<li>Registry instantiation and querying services</li>
+
+</ol>
+
+<p>Also, this tutorial used the <em>simple</em> implementor; all it did was accept a class name (and <code>require</code> path) and instantiate it. Although this is useful for simple services, it doesn't give us the <em>dependency injection</em> that IoC containers are famous for. The next tutorial will show how to wire several services together automatically, using the <em>complex</em> implementor.</p>
+
+</div>
+</body>
+</html>

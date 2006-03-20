@@ -5,4 +5,5 @@ description: This is the package for the Drip tutorial 01.
 service-points:
 
   Adder:
+    description: A service for adding two numbers.
     implementor: tutorial.php::Adder
