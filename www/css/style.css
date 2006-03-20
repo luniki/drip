@@ -1,0 +1,34 @@
+body {
+  background: #FFF;
+  font-family: sans-serif;
+  color: #000;
+  margin: 0px;
+}
+
+a {
+  color: #00F;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+#content {
+  margin-left: 0cm;
+  margin-right: 1cm;
+}
+
+#content pre {
+  background: #FFE;
+  border: 1px dotted #AAA;
+  padding: 1em;
+}
+
+.license {
+  text-align: center;
+  font-size: small;
+  font-style: italic;
+  color: #005;
+  margin-top: 1in;
+}

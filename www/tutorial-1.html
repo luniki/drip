@@ -4,6 +4,7 @@
 /* <![CDATA[ */ 
 @import "http://www.tigris.org/branding/css/tigris.css"; 
 @import "http://www.tigris.org/branding/css/inst.css"; 
+@import "css/style.css";
 /*  ]]> */
 </style>
 <link rel="stylesheet" type="text/css" href="http://www.tigris.org/branding/css/print.css" media="print" />
@@ -15,6 +16,8 @@
 <div id="content">
 
 <h1>Tutorial #1. Creating Services</h1>
+
+<p>This Tutorial was shamelessly copied from Jamis Buck's great <a href="http://copland.rubyforge.org/tutorial-1.html">Copland</a> tutorials.</p>
 
 <p>The sources for this tutorial may be found in the <tt>tutorial/01</tt>
 directory of the Drip distribution.</p>
@@ -107,6 +110,11 @@ echo $adder->add(5, 7);
 
 <p>Also, this tutorial used the <em>simple</em> implementor; all it did was accept a class name (and <code>require</code> path) and instantiate it. Although this is useful for simple services, it doesn't give us the <em>dependency injection</em> that IoC containers are famous for. The next tutorial will show how to wire several services together automatically, using the <em>complex</em> implementor.</p>
 
+</div>
+
+<div class="license">
+<a href="http://creativecommons.org/licenses/by-sa/2.0/"><img alt="Creative Commons License" border="0" src="http://creativecommons.org/images/public/somerights" /></a><br />
+This manual is licensed under a <a href="http://creativecommons.org/licenses/by-sa/2.0/">Creative Commons License</a>.
 </div>
 </body>
 </html>

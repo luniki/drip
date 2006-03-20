@@ -1,0 +1,166 @@
+<html>
+<head>
+<style type="text/css">
+/* <![CDATA[ */ 
+@import "http://www.tigris.org/branding/css/tigris.css"; 
+@import "http://www.tigris.org/branding/css/inst.css"; 
+@import "css/style.css"; 
+/*  ]]> */
+</style>
+<link rel="stylesheet" type="text/css" href="http://www.tigris.org/branding/css/print.css" media="print" />
+<script src="http://www.tigris.org/branding/scripts/tigris.js" type="text/javascript">
+</script>
+<title>Drip Manual :: Tutorial 2 :: Service Factories</title>
+</head>
+<body>
+<div id="content">
+
+<h1>Tutorial #2. Service Factories</h1>
+
+<p>This Tutorial was shamelessly copied from Jamis Buck's great <a href="http://copland.rubyforge.org/tutorial-2.html">Copland</a> tutorials.</p>
+
+<p>The sources for this tutorial may be found in the <tt>tutorial/02</tt> directory of the Drip distribution.</p>
+
+<h2>Introduction</h2>
+
+<p>As you saw in the last tutorial, you can create services by mapping them directly to PHP classes. The last tutorial used the <em>simple</em> implementor to do this, which has its limitations. For one, the class must have a no-argument constructor, which restricts what classes you can use with it.</p>
+
+<p>This tutorial will demonstrate the use of <em>service factories</em> to perform more complex styles of instantiation and initialization.</p>
+
+<p>A <em>service factory</em> is just a special kind of service that is used to create other services.</p>
+
+<p>This tutorial will continue the application started in the first tutorial. We'll extend the 'adder' example into a simple calculator object that delegates its operations to different services.</p>
+
+<h2>Steps</h2>
+
+<ol>
+
+<li><h3>Implement the Services</h3>
+
+<p>Most calculators support at least four operations: addition, multiplication, division, and subtraction. We've already got a service that does addition: let's write three more that do the multiplication, division, and subtraction:</p>
+
+<pre>
+class Subtractor {
+  function subtract($a, $b) {
+    return $a - $b;
+  }
+}
+
+class Multiplier {
+  function multiply($a, $b) {
+    return $a * $b;
+  }
+}
+
+class Divider {
+  function divide($a, $b) {
+    return $a / $b;
+  }
+}
+</pre>
+
+<p>Lastly, we'll create our calculator class:</p>
+
+<pre>
+class Calculator {
+
+  var $adder, $subtractor, $multiplier, $divider;
+
+  function add($a, $b) {
+    return $this->adder->add($a, $b);
+  }
+
+  function subtract($a, $b) {
+    return $this->subtractor->subtract($a, $b);
+  }
+
+  function multiply($a, $b) {
+    return $this->multiplier->multiply($a, $b);
+  }
+
+  function divide($a, $b) {
+    return $this->divider->divide($a, $b);
+  }
+}
+</pre>
+
+<p>Notice that we never instantiate any of the delegate classes: we're going to leave that up to Drip. Instead, we simply provide some setters, which Drip will use to set those dependencies. (Note that these setters can also aid in unit testing, since you can easily set each of those properties to some mock object. We won't demonstrate that, though, since unit testing is beyond the scope of this tutorial.)</p>
+
+</li>
+
+<li><h3>Package Descriptor</h3>
+
+<p>We now add to our package descriptor. Just as we defined a service point for the Adder class, we now have to add service points for each of the other classes we created.</p>
+
+<p>The Subtractor, Multiplier, and Divider service points will look very much like the Adder service point. Each uses the <em>simple</em> implementor.</p>
+
+<pre>
+  Subtractor:
+    implementor: tutorial.php::Subtractor
+
+  Multiplier:
+    implementor: tutorial.php::Multiplier
+
+  Divider:
+    implementor: tutorial.php::Divider
+</pre>
+
+<p>The Calculator service point, however, is a bit more complicated. Not only do we need to say what class implements the service, but we also need to say what services get wired into it for each of its properties.</p>
+
+<pre>
+  Calculator:
+    implementor:
+      class: tutorial.php::Calculator
+      properties:
+        adder: !!service tutorial.Adder
+        subtractor: !!service tutorial.Subtractor
+        divider: !!service tutorial.Divider
+        multiplier: !!service tutorial.Multiplier
+</pre>
+
+<p>The <code>implementor</code> section, in this case, is a map, instead of a string. The map specifies the <em>class</em> that will implement the service, and the properties that will be set.</p>
+
+<p>Note the special syntax of the properties: that <code>!!service</code> tag says that the following name is the name of a service point that should be instantiated and passed as the value of the corresponding property. In other words, when the BuilderFactory instantiates the Calculator class, it will also obtain references to the Adder, Subtractor, Divider, and Multiplier services, and wire them into the appropriate properties of the new Calculator object.</p>
+
+<p>Lastly, note that we used the fully-qualified service names for the dependencies (i.e., 'tutorial.Adder'). You will always have to give the fully-qualified service names even in the same package as the dependencies.</p>
+
+</li>
+
+<li><h3>Putting it all Together</h3>
+
+<p>We'll modify the 'main.php' driver file slightly, to test our new Calculator service:</p>
+
+<pre>
+require_once '../../lib/drip.php';
+
+$registry = Drip_Registry::build('package.yml');
+
+$calc = $registry->service('tutorial.Calculator');
+
+printf("%f\n", $calc->add(5, 7));
+printf("%f\n", $calc->subtract(5, 7));
+printf("%f\n", $calc->multiply(5, 7));
+printf("%f\n", $calc->divide(5, 7));
+</pre>
+
+<p>Once run, you should see the program spit out the answers, as you would expect.<br /></p>
+
+</li>
+
+</ol>
+
+<h2>Summary</h2>
+
+<p>This tutorial showed you how to use more complicated implementors. In particular, it showed you how to have Drip automatically wire dependencies together, instantiating services as needed. However, you only saw how to use properties to wire services together; you can also specify constructor parameters that will be passed to the new service when it is instantiated.</p>
+
+<p>You also saw how to use the <code>!!service</code> tag directive, to instruct Drip to interpret a value as a service point name, instead of simply as a string. There are several such directives; see the Drip documentation for a comprehensive list.</p>
+
+</div>
+
+<div class="license">
+<a href="http://creativecommons.org/licenses/by-sa/2.0/"><img alt="Creative Commons License" border="0" src="http://creativecommons.org/images/public/somerights" /></a><br />
+This manual is licensed under a <a href="http://creativecommons.org/licenses/by-sa/2.0/">Creative Commons License</a>.
+</div>
+
+</body>
+</html>
